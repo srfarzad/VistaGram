@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="img_profile_width">50dp</dimen>
+    <dimen name="img_profile_height">50dp</dimen>
+    <dimen name="margin_left">5dp</dimen>
+    <dimen name="margin_right">5dp</dimen>
+
+
+
+
+</resources>
