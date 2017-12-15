@@ -7,12 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.vistagram.fragments.BlankFragment;
 import com.vistagram.fragments.HomeFragment;
 import com.vistagram.fragments.PostFragment;
 import com.vistagram.fragments.SearchFragment;
 import com.vistagram.helperlibrary.ApplicationManager;
 import com.vistagram.helperlibrary.ApplicationPermission;
+import com.vistagram.helperlibrary.utils.Logger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +28,8 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
    @BindView(R.id.menu_bottom)
     BottomNavigationView menu_bottom;
 
+   FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +37,8 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
         ButterKnife.bind(this);
         menu_bottom.setOnNavigationItemSelectedListener(this);
 
+      //  FirebaseApp.initializeApp(this);
+        firebaseAuth=FirebaseAuth.getInstance();
 
         String package1 = ApplicationManager.getPackageName(getApplicationContext());
 
@@ -58,6 +68,23 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
         } catch (Exception e) {
             e.printStackTrace();
         }*/
+
+
+
+        firebaseAuth.createUserWithEmailAndPassword("sr.farzad@gmail.com","123").addOnCompleteListener(
+                DashboardActivity.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if(task.isSuccessful()){
+                    Logger.Log("Success","");
+                }else {
+                    Logger.Log("Fail","");
+                }
+
+            }
+        });
+
 
 
     }
