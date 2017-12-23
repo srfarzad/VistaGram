@@ -1,6 +1,8 @@
 package com.vistagram.config;
 
 import android.app.Application;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.orm.Database;
 import com.orm.SugarApp;
@@ -10,10 +12,14 @@ import com.orm.SugarApp;
  */
 
 public class AppConfiguration extends Application {
-
+    private static AppConfiguration instance;
 
     private Database database;
     private static AppConfiguration sugarContext;
+
+    public static synchronized AppConfiguration getInstance() {
+        return instance;
+    }
 
     public void onCreate() {
         super.onCreate();
@@ -36,5 +42,8 @@ public class AppConfiguration extends Application {
         return database;
     }
 
+    public SharedPreferences getSharedPreferences() {
+        return PreferenceManager.getDefaultSharedPreferences(this);
+    }
 
 }

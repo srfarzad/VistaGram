@@ -1,39 +1,49 @@
 package com.vistagram.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.orm.SugarRecord;
 
 /**
  * Created by Android on 12/1/2017.
  */
 
-public class User {
+public class User extends SugarRecord<User> {
 
     @SerializedName("id")
-    int id;
+    private Long id;
     @SerializedName("name")
-    String name;
+    private String name;
     @SerializedName("userName")
-    String userName;
+    private String userName;
     @SerializedName("password")
-    String password;
+    private String password;
     @SerializedName("website")
-    String website;
+    private String website;
     @SerializedName("bio")
-    String bio;
+    private String bio;
     @SerializedName("icon")
-    String icon;
+    private String icon;
     @SerializedName("phoneNumber")
-    String phoneNumber;
+    private String phoneNumber;
     @SerializedName("email")
-    String email;
+    private String email;
     @SerializedName("gender")
-    boolean gender;
+    private boolean gender;
 
-    public int getId() {
+    public User() {
+    }
+
+    public User(Long id, String userName, String password) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

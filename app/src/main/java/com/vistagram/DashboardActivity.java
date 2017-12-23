@@ -1,11 +1,13 @@
 package com.vistagram;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.vistagram.fragments.BlankFragment;
 import com.vistagram.fragments.HomeFragment;
@@ -21,6 +23,9 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
 
    @BindView(R.id.menu_bottom)
     BottomNavigationView menu_bottom;
+
+    private static final int TIME_DELAY = 2000;
+    private static long back_pressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,7 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
         if(ApplicationPermission.isStoragePermissionGranted(DashboardActivity.this));
 
 
-       /* WebserivceHandler webserivceHandler=new WebserivceHandler(getApplicationContext());
+       /* WebserviceHandler webserivceHandler=new WebserviceHandler(getApplicationContext());
 
         try {
             webserivceHandler.register("android", "123", new IMessageListener() {
@@ -99,8 +104,25 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
         getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
 
         menu_bottom.getMenu().getItem(number).setChecked(true);
-
         
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (back_pressed + TIME_DELAY > System.currentTimeMillis()) {
+            super.onBackPressed();
+            Intent startMain = new Intent(Intent.ACTION_MAIN);
+            startMain.addCategory(Intent.CATEGORY_HOME);
+            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(startMain);
+            finish();
+            System.exit(0);
+            return;
+        } else {
+            Toast.makeText(getBaseContext(), "Press once again to exit!",
+                    Toast.LENGTH_SHORT).show();
+        }
+        back_pressed = System.currentTimeMillis();
     }
 }

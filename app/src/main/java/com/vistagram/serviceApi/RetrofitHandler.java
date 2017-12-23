@@ -17,7 +17,6 @@ public class RetrofitHandler {
     private static Retrofit retrofit = null;
 
 
-
     public static Retrofit getRetrofit() {
 
         Gson gson = new GsonBuilder()

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import com.vistagram.adapter.PostsAdapter;
 import com.vistagram.helperlibrary.utils.Logger;
 import com.vistagram.model.Post;
 import com.vistagram.model.listener.IResponseAsListListener;
-import com.vistagram.serviceApi.WebserivceHandler;
+import com.vistagram.serviceApi.WebserviceHandler;
 
 import java.util.List;
 
@@ -45,10 +44,10 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
 
-        WebserivceHandler webserivceHandler=new WebserivceHandler(getActivity());
-       // webserivceHandler.getPosts("", "", new IRes  )
+        WebserviceHandler webserviceHandler=new WebserviceHandler(getActivity());
+       // WebserviceHandler.getPosts("", "", new IRes  )
 
-        webserivceHandler.getPosts("", "", new IResponseAsListListener() {
+        webserviceHandler.getPosts("", "", new IResponseAsListListener() {
             @Override
             public void onSuccess(Response response) {
                 Logger.Log("Response",response.toString());

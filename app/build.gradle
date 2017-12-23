@@ -21,6 +21,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildToolsVersion '26.0.2'
 }
 
 dependencies {
@@ -42,4 +43,5 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     implementation 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     annotationProcessor 'com.android.databinding:compiler:2.3.0'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
 }
